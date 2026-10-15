@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+    {% block content %}
+    <head>
+        {% if title %}
+        <title>{{ title }} - website</title>
+        {% else %}
+        <title>Welcome to registru!</title>
+        {% endif %}
+    <head>
+    <body>
+        <h1>Bună ziua și bine ați venit în registrul dumneavoastră, {{ user.username}}</h1>
+    </body>
+    {% endblock %}

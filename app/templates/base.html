@@ -1,0 +1,21 @@
+<!doctype HTML>
+<html>
+    <head>
+        {% if title %}
+        <title>
+            {{title}}
+        </title>
+        {% else %}
+        <title>
+            Registru Oficial - COnsiliul Local Bacau
+        </title>
+        {% endif %}
+    </head>
+    <div>
+        <a href="/index">Home</a>
+        <a href="/login">Login</a>
+    </div>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
