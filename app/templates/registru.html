@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+<!-- we first focus on the page visual with fake hardcoded info to prevent bugs
+ to later implement jinja2  -->
+
 {% block content %}
     <head> <!-- head is for rules and settings -->
         <!-- css to style classes -->
@@ -8,11 +11,11 @@
                 display: flex; /* used to sit list on the left and details on the right */
                 gap: 24px;
                 max-width: 1400px;
-                margin-top: 40px; /* prevent huge stretch on wide screens */
+                margin-top: 20px; /* prevent huge stretch on wide screens */
                 margin-left: auto;
                 margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
                 margin-bottom: 40px;
-                padding: 18px; /* outher breathing room */
+                padding: 14px; /* outher breathing room */
                 border:2px solid blue;
                 min-height:400px;
             }
@@ -28,10 +31,10 @@
             .detalis-panel{
                 flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
                 background-color: #ffffff;
-                border: 1px solid #d1d5fb;
+                /*border: 1px solid #d1d5fb;*/
                 border-radius: 8px;
-                padding: 24px; /* pads the future elements inside to the actual borders */
-                min-height: 400px;
+                padding: 5px; /* pads the future elements inside to the actual borders */
+                border: 2px solid green; #debug
             }
 
             .document-card{
@@ -62,6 +65,102 @@
                 color:rgb(143, 82, 7);
                 margin-top: 4px; /* space from the top */
             }
+
+            .form-section{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                border: 1px solid #e5e7eb;
+                border-radius: 6px;
+                padding: 6px;
+                margin-bottom: 20px; /* outer space */
+                width: 230px;
+            }
+
+            .section-title{
+                font-size: 16px;
+                color: #374151;
+                margin-bottom: 12px;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 8px;
+            }
+
+            .form-row{
+                display: flex; /* puts the inputs side by side */
+                /*gap: 20px;*/
+                justify-content: space-between;
+            }
+
+            .input-group{
+                display: flex; /* text on top of the box */
+                flex-direction: column;
+                gap: 2px; /* gap between label and input */
+            }
+
+            .input-group label{
+                font-size: 16px;
+                color: #4b5563;
+                font-weight:bold;
+            }
+
+            /* descendent selector(aprent-child replationship) */
+            /* find input-group class and apply those rules to any label(tag) inside */
+            .input-group input{
+                padding: 8px 4px; /* top-bottom left-right */
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                width: 115px;
+            }
+
+            /* add blue ring when clicked inside */
+            .input-group input:focus{
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
+            }
+
+            .input-date{
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .input-date label{
+                font-size: 16px;
+                color: #4b5563;
+                font-weight:bold;
+            }
+
+            .input-date input{
+                padding: 8px 4px; /* top-bottom left-right */
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                width: 75px;
+            }
+
+            .input-date input:focus{
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
+            }
+
+            .input-mode{
+                display: flex;
+                flex-direction: column;
+                gap:2px;
+            }
+
+            .input-type{
+                display: flex;
+                flex-direction: column;
+                gap:2px;
+            }
+
+            .separator{
+                border-top: 1.2px solid saddlebrown;
+            }
         </style>
     </head>
     <body>
@@ -78,7 +177,38 @@
                     </div>
                 </div>
             </div>
-            <div class="details-panel">
+            <div class="detalis-panel"> <!-- first grouped section -->
+                <h3 class="section-title">Document - Intrare</h3>
+                <div class="form-section">
+                    <div class="form-row"><!-- numar/data -->
+                        <div class="input-group"> <!-- input: document number -->
+                            <label>Număr document:</label>
+                            <input type="text" value="675787">
+                        </div>
+                        <div class="input-date"> <!-- input: document date -->
+                            <label>din data:</label>
+                            <input tpye="date" value="15/04/2026">
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    <div class ="form-row"><!-- mod intrare/tip intrare-->
+                        <div class="input-mode">
+                            <label>Mod intrare:</label>
+                            <select class="select-mod">
+                                <option value="mail">mail</option>
+                                <option value="poștă">poștă</option>
+                                <option value="direct">direct</option>
+                            </select>
+                        </div>
+                        <div class="input-type">
+                            <label>Tip intrare:</label>
+                            <select>
+                                <!-- to ask to prof -->
+                                <option value="hardcore">aux</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
