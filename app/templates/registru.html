@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <head> <!-- head is for rules and settings -->
+        <!-- css to style classes -->
+        <style>
+            .app-layout{
+                display: flex; /* used to sit list on the left and details on the right */
+                gap: 24px;
+                max-width: 1400px;
+                margin-top: 40px; /* prevent huge stretch on wide screens */
+                margin-left: auto;
+                margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
+                margin-bottom: 40px;
+                padding: 18px; /* outher breathing room */
+                border:2px solid blue;
+                min-height:400px;
+            }
+
+            .registry-list{
+                display: flex; /* layout mode, used to stack items in column (cards). Flexbox is a html tool for alignment */
+                flex-direction: column; /* stacks items vertically */
+                gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
+                width: 125px; /* without it the div would stretch to the entire width of the screen */
+                border:2px solid red; #debug
+            }
+
+            .detalis-panel{
+                flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
+                background-color: #ffffff;
+                border: 1px solid #d1d5fb;
+                border-radius: 8px;
+                padding: 24px; /* pads the future elements inside to the actual borders */
+                min-height: 400px;
+            }
+
+            .document-card{
+                background-color: #ffffff;
+                border: 1px solid #d1d5db; /* draw border around box - solid line - color */
+                padding: 16 px; /* space from the border to not look suffocated */
+                border-radius: 8px; /* make the edges more curvy */
+
+                display: flex; /* row alignment, used to stack number and date in row(card) */
+                justify-content: space-between; /* left and right alignment */
+                align-items: center; /* alogn them vertically (no up and downs) */
+            }
+
+            /* only apply this rules if an element has both teh document-card and active class together */
+            .document-card.active{
+                background-color: #eff6ff;
+                border-color: #3b82f6;
+                border-left: 4px solid #2563eb; /* only the left border */
+            }
+
+            .doc-number{
+                font-weight: bold; /* ticker */
+                color:rgb(143, 82, 7); /* text color */
+            }
+
+            .doc-date{
+                font-size: 14px;
+                color:rgb(143, 82, 7);
+                margin-top: 4px; /* space from the top */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app-layout">
+            <div class="sidebar"> <!-- for future feets -->
+                <div class="registry-list">
+                    <div class="document-card active"> <!-- this div inherit both document-card and active class-->
+                        <div class="doc-number">56456</div>
+                        <div class="doc-date">30/09/2026</div>
+                    </div>
+                    <div class="document-card">
+                        <div class="doc-number">18985</div> <!-- div stands for division (empty box)-->
+                        <div class="doc-date">28/09/2026</div> <!-- we can think the class a sticky note to css-->
+                    </div>
+                </div>
+            </div>
+            <div class="details-panel">
+            </div>
+        </div>
+    </body>
+{% endblock %}
