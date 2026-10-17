@@ -12,12 +12,12 @@
                 gap: 24px;
                 max-width: 1400px;
                 margin-top: 20px; /* prevent huge stretch on wide screens */
-                margin-left: auto;
+                margin-left: auto; /* auto calculates automatically the margin needed */
                 margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
                 margin-bottom: 40px;
                 padding: 14px; /* outher breathing room */
                 border:2px solid blue;
-                min-height:400px;
+                min-height:400px; /* this can't get smaller than this */
             }
 
             .registry-list{
@@ -26,15 +26,6 @@
                 gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
                 width: 125px; /* without it the div would stretch to the entire width of the screen */
                 border:2px solid red; #debug
-            }
-
-            .detalis-panel{
-                flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
-                background-color: #ffffff;
-                /*border: 1px solid #d1d5fb;*/
-                border-radius: 8px;
-                padding: 5px; /* pads the future elements inside to the actual borders */
-                border: 2px solid green; #debug
             }
 
             .document-card{
@@ -64,6 +55,17 @@
                 font-size: 14px;
                 color:rgb(143, 82, 7);
                 margin-top: 4px; /* space from the top */
+            }
+
+            .detalis-panel{
+                flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
+                display: flex;
+                gap:12px;
+                background-color: #ffffff;
+                /*border: 1px solid #d1d5fb;*/
+                border-radius: 8px;
+                padding: 5px; /* pads the future elements inside to the actual borders */
+                border: 2px solid green; #debug
             }
 
             .form-section{
@@ -120,46 +122,59 @@
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
             }
 
-            .input-date{
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-            }
-
-            .input-date label{
-                font-size: 16px;
-                color: #4b5563;
-                font-weight:bold;
-            }
-
-            .input-date input{
-                padding: 8px 4px; /* top-bottom left-right */
-                border: 1px solid #d1d5db;
-                border-radius: 4px;
-                font-size: 14px;
-                outline: none;
+            #date input{
                 width: 75px;
             }
 
-            .input-date input:focus{
+            .input-group input:focus{
                 border-color: #3b82f6;
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
             }
 
-            .input-mode{
-                display: flex;
-                flex-direction: column;
-                gap:2px;
+            .input-group select{
+                padding: 8px 8px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                font-size: 14px;
+                color: #111827;
+                background-color: #ffffff;
+                cursor: pointer; /* change hand to a picky one to show it is interactive */
+                outline: none; /* standard button highlight (old) */
             }
 
-            .input-type{
-                display: flex;
-                flex-direction: column;
-                gap:2px;
+            .input-group select:focus{
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3)
+            }
+
+            .hidden-input{
+                display: none; /* invisible */
+                margin-top: 4px;
+                padding: 8px 12px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+            }
+
+            /* # = id, when cecked activate this rule */
+            /* class = general, id = specific */
+            /* ~ = general sibling (find the elemenet .hidden-input that sits in toggle-extra) */
+            /* + = adjacent sibling (targets an element that comes right after) */
+            #toggle-extra:checked ~ .hidden-input{
+                display: block; /* overrides display:hide */
             }
 
             .separator{
                 border-top: 1.2px solid saddlebrown;
+            }
+
+            .input-size{
+                max-width: 150px;
+                min-width: 100px;
+                width: auto;
+            }
+
+            .text-modal{
+                border: 1px solid green;
             }
         </style>
     </head>
@@ -178,34 +193,63 @@
                 </div>
             </div>
             <div class="detalis-panel"> <!-- first grouped section -->
-                <h3 class="section-title">Document - Intrare</h3>
-                <div class="form-section">
-                    <div class="form-row"><!-- numar/data -->
-                        <div class="input-group"> <!-- input: document number -->
-                            <label>Număr document:</label>
-                            <input type="text" value="675787">
+                <!--<h3 class="section-title">Document - Intrare</h3>-->
+                <div class="column" id="first">
+                    <div class="form-section">
+                        <div class="form-row"><!-- numar/data -->
+                            <div class="input-group" id="number"> <!-- input: document number -->
+                                <label>Număr document:</label>
+                                <input type="text" value="675787">
+                            </div>
+                            <div class="input-group" id="date"> <!-- input: document date -->
+                                <label>din data:</label>
+                                <input tpye="date" value="15/04/2026">
+                            </div>
                         </div>
-                        <div class="input-date"> <!-- input: document date -->
-                            <label>din data:</label>
-                            <input tpye="date" value="15/04/2026">
+                        <div class="separator"></div>
+                        <div class ="form-row"><!-- mod intrare/tip intrare-->
+                            <div class="input-group">
+                                <label>Mod intrare:</label>
+                                <select>
+                                    <option value="mail">mail</option>
+                                    <option value="poștă">poștă</option>
+                                    <option value="direct">direct</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Tip intrare:</label>
+                                <select>
+                                    <!-- to ask to prof -->
+                                    <option value="hardcore">aux</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="separator"></div>
-                    <div class ="form-row"><!-- mod intrare/tip intrare-->
-                        <div class="input-mode">
-                            <label>Mod intrare:</label>
-                            <select class="select-mod">
-                                <option value="mail">mail</option>
-                                <option value="poștă">poștă</option>
-                                <option value="direct">direct</option>
+                    <div class="form-section">
+                        <div class="input-group">
+                            <label>Emitent:</label>
+                            <select>
+                                <option value="Maria Dascalu">Maria Dascalu</option>
+                                <option value=""Marina Apreotesei">Marina Apreotesei</option>
                             </select>
                         </div>
-                        <div class="input-type">
-                            <label>Tip intrare:</label>
-                            <select>
-                                <!-- to ask to prof -->
-                                <option value="hardcore">aux</option>
-                            </select>
+                        <div class="input-group">
+                            <label>Nr înregistrare emitent</label>
+                            <input type="text" value="">
+                        </div>
+                        <div class="separator"></div>
+                        <div class="toggle-group">
+                            <label for="toggle-extra">Termen:</label> <!-- clicking for will ceck the box-->
+                            <input type="checkbox" id="toggle-extra">
+                            <input type="text" class="hidden-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="column" id="second">
+                    <div class="form-section">
+                        <div class="input-group">
+                            <label>Conținut intrare</label>
+                            <input type="text" value="">
                         </div>
                     </div>
                 </div>
