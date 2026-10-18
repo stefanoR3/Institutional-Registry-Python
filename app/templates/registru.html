@@ -25,7 +25,7 @@
                 flex-direction: column; /* stacks items vertically */
                 gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
                 width: 125px; /* without it the div would stretch to the entire width of the screen */
-                border:2px solid red; #debug
+                border:2px solid red; /*debug*/
             }
 
             .document-card{
@@ -65,7 +65,7 @@
                 /*border: 1px solid #d1d5fb;*/
                 border-radius: 8px;
                 padding: 5px; /* pads the future elements inside to the actual borders */
-                border: 2px solid green; #debug
+                border: 2px solid green; /*debug*/
             }
 
             .form-section{
@@ -77,6 +77,13 @@
                 padding: 6px;
                 margin-bottom: 20px; /* outer space */
                 width: 230px;
+            }
+
+            .form-column{
+                display: flex;
+                flex-direction: column;
+                border: 1px solid violet;
+                padding: 1.5px;
             }
 
             .section-title{
@@ -97,6 +104,7 @@
                 display: flex; /* text on top of the box */
                 flex-direction: column;
                 gap: 2px; /* gap between label and input */
+                border: 1px solid black;
             }
 
             .input-group label{
@@ -122,13 +130,12 @@
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
             }
 
-            #date input{
-                width: 75px;
+            .input-group select{
+                width: 70px;
             }
 
-            .input-group input:focus{
-                border-color: #3b82f6;
-                box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
+            #date input{
+                width: 75px;
             }
 
             .input-group select{
@@ -153,13 +160,14 @@
                 padding: 8px 12px;
                 border: 1px solid #d1d5db;
                 border-radius: 4px;
+                width:75px;
             }
 
             /* # = id, when cecked activate this rule */
             /* class = general, id = specific */
             /* ~ = general sibling (find the elemenet .hidden-input that sits in toggle-extra) */
             /* + = adjacent sibling (targets an element that comes right after) */
-            #toggle-extra:checked ~ .hidden-input{
+            .toggle-extra:checked ~ .hidden-input{
                 display: block; /* overrides display:hide */
             }
 
@@ -167,15 +175,23 @@
                 border-top: 1.2px solid saddlebrown;
             }
 
+
             .input-size{
                 max-width: 150px;
                 min-width: 100px;
                 width: auto;
             }
 
+            #close{
+                align-items: center;
+                min-height: 40px;
+                justify-content:left;
+            }
+
             .text-modal{
                 border: 1px solid green;
             }
+
         </style>
     </head>
     <body>
@@ -194,7 +210,7 @@
             </div>
             <div class="detalis-panel"> <!-- first grouped section -->
                 <!--<h3 class="section-title">Document - Intrare</h3>-->
-                <div class="column" id="first">
+                <div class="form-column" id="first">
                     <div class="form-section">
                         <div class="form-row"><!-- numar/data -->
                             <div class="input-group" id="number"> <!-- input: document number -->
@@ -207,8 +223,8 @@
                             </div>
                         </div>
                         <div class="separator"></div>
-                        <div class ="form-row"><!-- mod intrare/tip intrare-->
-                            <div class="input-group">
+                        <div class="form-row">
+                            <div class="input-group"> <!-- mod intrare/tip intrare-->
                                 <label>Mod intrare:</label>
                                 <select>
                                     <option value="mail">mail</option>
@@ -219,7 +235,7 @@
                             <div class="input-group">
                                 <label>Tip intrare:</label>
                                 <select>
-                                    <!-- to ask to prof -->
+                                <!-- to ask to prof -->
                                     <option value="hardcore">aux</option>
                                 </select>
                             </div>
@@ -238,18 +254,25 @@
                             <input type="text" value="">
                         </div>
                         <div class="separator"></div>
-                        <div class="toggle-group">
+                        <div class="form-row" id="close">
                             <label for="toggle-extra">Termen:</label> <!-- clicking for will ceck the box-->
-                            <input type="checkbox" id="toggle-extra">
+                            <input type="checkbox" class="toggle-extra">
                             <input type="text" class="hidden-input">
                         </div>
                     </div>
                 </div>
-                <div class="column" id="second">
+                <div class="form-column" id="second">
                     <div class="form-section">
                         <div class="input-group">
                             <label>Conținut intrare</label>
                             <input type="text" value="">
+                            <div class="form-row" id="repart">
+                                <label id="repart-option">Document repartizat</label>
+                                <input type="checkbox" class="toggle-extra">
+                            </div>
+                        </div>
+                        <div class="form-row" class="close">
+                            <button type="button" class="repart-buttons">Modifică repartizările</button>
                         </div>
                     </div>
                 </div>
