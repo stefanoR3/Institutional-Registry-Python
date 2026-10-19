@@ -103,8 +103,9 @@
             .input-group{
                 display: flex; /* text on top of the box */
                 flex-direction: column;
-                gap: 2px; /* gap between label and input */
+                gap: 6px; /* gap between label and input */
                 border: 1px solid black;
+                max-width: 300px;
             }
 
             .input-group label{
@@ -126,7 +127,7 @@
 
             /* add blue ring when clicked inside */
             .input-group input:focus{
-                border-color: #3b82f6;
+                border-color: yellow;
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
             }
 
@@ -163,6 +164,10 @@
                 width:75px;
             }
 
+            #issuer-select{
+                width:auto;
+            }
+
             /* # = id, when cecked activate this rule */
             /* class = general, id = specific */
             /* ~ = general sibling (find the elemenet .hidden-input that sits in toggle-extra) */
@@ -175,21 +180,56 @@
                 border-top: 1.2px solid saddlebrown;
             }
 
-
             .input-size{
                 max-width: 150px;
                 min-width: 100px;
                 width: auto;
             }
 
-            #close{
+            .check-box-row{
+                display: flex;
                 align-items: center;
                 min-height: 40px;
-                justify-content:left;
+                justify-content:start;
+            }
+
+            .check-box-row label{
+                font-size: 16px;
+                color: #4b5563;
+                font-weight:bold;
             }
 
             .text-modal{
                 border: 1px solid green;
+            }
+
+            .repart-buttons{
+                background-color: rgba(25, 240, 176, 0.1);
+                border: 2px solid rgba(25, 240, 176, 0.2);
+                border-radius: 4px;
+                text-align: center;
+                width: 200px;
+                cursor: pointer;
+                padding:2px 4px;
+                margin: 1px 0px;
+            }
+
+            #second{
+                width: 500px;
+                flex-direction: row;
+            }
+
+            #second-fs{
+                height: 250px;
+                width: 500px;
+            }
+
+            #aux-input-1{
+                width:200px;
+            }
+
+            #aux-input-2{
+                width:200px;
             }
 
         </style>
@@ -214,7 +254,7 @@
                     <div class="form-section">
                         <div class="form-row"><!-- numar/data -->
                             <div class="input-group" id="number"> <!-- input: document number -->
-                                <label>Număr document:</label>
+                                <label>Număr document</label>
                                 <input type="text" value="675787">
                             </div>
                             <div class="input-group" id="date"> <!-- input: document date -->
@@ -225,7 +265,7 @@
                         <div class="separator"></div>
                         <div class="form-row">
                             <div class="input-group"> <!-- mod intrare/tip intrare-->
-                                <label>Mod intrare:</label>
+                                <label>Mod intrare</label>
                                 <select>
                                     <option value="mail">mail</option>
                                     <option value="poștă">poștă</option>
@@ -233,7 +273,7 @@
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label>Tip intrare:</label>
+                                <label>Tip intrare</label>
                                 <select>
                                 <!-- to ask to prof -->
                                     <option value="hardcore">aux</option>
@@ -243,8 +283,8 @@
                     </div>
                     <div class="form-section">
                         <div class="input-group">
-                            <label>Emitent:</label>
-                            <select>
+                            <label>Emitent</label>
+                            <select id="issuer-select">
                                 <option value="Maria Dascalu">Maria Dascalu</option>
                                 <option value=""Marina Apreotesei">Marina Apreotesei</option>
                             </select>
@@ -254,25 +294,29 @@
                             <input type="text" value="">
                         </div>
                         <div class="separator"></div>
-                        <div class="form-row" id="close">
-                            <label for="toggle-extra">Termen:</label> <!-- clicking for will ceck the box-->
+                        <div class="check-box-row">
+                            <label for="toggle-extra">Termen</label> <!-- clicking for will ceck the box-->
                             <input type="checkbox" class="toggle-extra">
                             <input type="text" class="hidden-input">
                         </div>
                     </div>
                 </div>
                 <div class="form-column" id="second">
-                    <div class="form-section">
-                        <div class="input-group">
+                    <div class="form-section" id="second-fs">
+                        <div class="input-group" id="aux-input-1">
                             <label>Conținut intrare</label>
                             <input type="text" value="">
-                            <div class="form-row" id="repart">
-                                <label id="repart-option">Document repartizat</label>
-                                <input type="checkbox" class="toggle-extra">
-                            </div>
                         </div>
-                        <div class="form-row" class="close">
-                            <button type="button" class="repart-buttons">Modifică repartizările</button>
+                        <div class="separator">
+                            <div class="check-box-row">
+                                <label for="toggle-extra">Document repartizat</label>
+                                <input type="checkbox" class="toggle-extra"></input>
+                            </div>      <!-- css can only style!-->
+                            <div class="input-group" id="aux-input-2">
+                                <button type="button" class="repart-buttons">Modifică repartizări</button>
+                                <button type="button" class="repart-buttons">Vezi repartizări</button>
+                                <button type="button" class="repart-buttons">Anulează repartizări</button>
+                            </div>
                         </div>
                     </div>
                 </div>
