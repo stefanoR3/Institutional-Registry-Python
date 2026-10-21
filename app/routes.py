@@ -2,7 +2,6 @@ from flask import render_template
 from app import app, forms
 
 #register the route into the object "routing table" (URL -> function) 
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -19,3 +18,7 @@ def login():
 @app.route('/registru')
 def registru():
     return render_template('registru.html', title='Registru')
+
+@app.route('/filter')
+def fillter():
+    return render_template('filtru.html')

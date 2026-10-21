@@ -6,10 +6,12 @@
 {% block content %}
     <head> <!-- head is for rules and settings -->
         <!-- css to style classes -->
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js" integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg" crossorigin="anonymous"></script>
         <style>
             body{
-                background-color: rgba(1, 35, 54, 0.8);
+                /*background-color: rgba(1, 35, 54, 0.8);*/
             }
+
             .app-layout{
                 display: flex; /* used to sit list on the left and details on the right */
                 gap: 24px;
@@ -19,7 +21,7 @@
                 margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
                 margin-bottom: 40px;
                 padding: 14px; /* outher breathing room */
-                border:2px solid blue;
+                /* border:2px solid blue; */
                 min-height:400px; /* this can't get smaller than this */
             }
 
@@ -28,7 +30,7 @@
                 flex-direction: column; /* stacks items vertically */
                 gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
                 width: 125px; /* without it the div would stretch to the entire width of the screen */
-                border:2px solid red; /*debug*/
+                /*border:2px solid; red; /*debug*/
             }
 
             .document-card{
@@ -45,7 +47,7 @@
             /* only apply this rules if an element has both teh document-card and active class together */
             .document-card.active{
                 background-color: #eff6ff;
-                border-color: #3b82f6;
+                /*border-color: #3b82f6;*/
                 border-left: 4px solid #2563eb; /* only the left border */
             }
 
@@ -60,7 +62,7 @@
                 margin-top: 4px; /* space from the top */
             }
 
-            .detalis-panel{
+            .details-panel{
                 flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
                 display: flex;
                 gap:12px;
@@ -68,7 +70,7 @@
                 /*border: 1px solid #d1d5fb;*/
                 border-radius: 8px;
                 padding: 5px; /* pads the future elements inside to the actual borders */
-                border: 2px solid green; /*debug*/
+                border: 2px solid rgba(29, 228, 238, 0.528); /*debug*/
             }
 
             .form-section{
@@ -85,7 +87,7 @@
             .form-column{
                 display: flex;
                 flex-direction: column;
-                border: 1px solid violet;
+                /*border: 1px solid violet;*/
                 padding: 1.5px;
             }
 
@@ -107,7 +109,7 @@
                 display: flex; /* text on top of the box */
                 flex-direction: column;
                 gap: 6px; /* gap between label and input */
-                border: 1px solid black;
+                /*border: 1px solid; black;*/
                 max-width: 300px;
             }
 
@@ -147,7 +149,7 @@
                 border: 1px solid #d1d5db;
                 border-radius: 4px;
                 font-size: 14px;
-                color: #111827;
+                /*color: #111827;*/
                 background-color: #ffffff;
                 cursor: pointer; /* change hand to a picky one to show it is interactive */
                 outline: none; /* standard button highlight (old) */
@@ -255,7 +257,7 @@
 
             #close{
                 margin-top: 20px;
-                background-color: rgba(240, 164, 12, 0.245);
+                /*background-color: rgba(240, 164, 12, 0.245);*/
                 border: 2px solid rgba(240, 25, 64, 0.295);
                 border-radius: 4px;
                 text-align: center;
@@ -265,7 +267,7 @@
             }
 
             .button-list{
-                background-color: rgba(25, 240, 176, 0.1);
+                /*background-color: rgba(25, 240, 176, 0.1);*/
                 border: 2px solid rgba(25, 240, 176, 0.2);
                 border-radius: 4px;
                 text-align: center;
@@ -289,7 +291,7 @@
                     </div>
                 </div>
             </div>
-            <div class="detalis-panel"> <!-- first grouped section -->
+            <div class="details-panel"> <!-- first grouped section -->
                 <!--<h3 class="section-title">Document - Intrare</h3>-->
                 <div class="form-column" id="first-column">
                     <div class="form-section">
@@ -391,17 +393,19 @@
                     </div>
                 </div>
                 <div class="form-column" id="third-column">
-                    <div class="input-group">
-                        <button type="button" class="repart-buttons">Asociere Document</button>
-                        <button tpye="button" class="repart-buttons">Modificare Document</button>
-                        <button type="button" class="repart-buttons">Anulare Raspuns</button>
-                        <button tpye="button" class="repart-buttons">Anulare Document</button>
-                        <button tpye="button" class="repart-buttons">Stergere Document</button>
-                        <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
-                        <button type="button" class="repart-buttons">Adaugare Iesire</button>
-                        <button type="button" class="repart-buttons">Filtrare</button>
-                        <button type="button" class="repart-buttons">Anulare Filtrare</button>
-                        <button type="button" class="repart-buttons" id="close">Inchidere</button>
+                    <div class="form-section">
+                        <div class="input-group">
+                            <button type="button" class="repart-buttons" >Asociere Document</button>
+                            <button tpye="button" class="repart-buttons">Modificare Document</button>
+                            <button type="button" class="repart-buttons">Anulare Raspuns</button>
+                            <button tpye="button" class="repart-buttons">Anulare Document</button>
+                            <button tpye="button" class="repart-buttons">Stergere Document</button>
+                            <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
+                            <button type="button" class="repart-buttons">Adaugare Iesire</button>
+                            <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
+                            <button type="button" class="repart-buttons">Anulare Filtrare</button>
+                            <button type="button" class="repart-buttons" id="close">Inchidere</button>
+                        </div>
                     </div>
                 </div>
             </div>
