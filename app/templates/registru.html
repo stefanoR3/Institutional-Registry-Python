@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js" integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg" crossorigin="anonymous"></script>
         <style>
             body{
-                /*background-color: rgba(1, 35, 54, 0.8);*/
+                background-color: rgba(1, 35, 54, 0.8);
             }
 
             .app-layout{
@@ -23,6 +23,7 @@
                 padding: 14px; /* outher breathing room */
                 /* border:2px solid blue; */
                 min-height:400px; /* this can't get smaller than this */
+                height: 800px;
             }
 
             .registry-list{
@@ -100,7 +101,7 @@
             }
 
             .form-row{
-                display: flex; /* puts the inputs side by side */
+                display: flex; /* put the inputs side by side */
                 /*gap: 20px;*/
                 justify-content: space-between;
             }
@@ -109,7 +110,7 @@
                 display: flex; /* text on top of the box */
                 flex-direction: column;
                 gap: 6px; /* gap between label and input */
-                /*border: 1px solid; black;*/
+                border: 1px solid black;
                 max-width: 300px;
             }
 
@@ -127,17 +128,13 @@
                 border-radius: 4px;
                 font-size: 14px;
                 outline: none;
-                width: 115px;
+                width: 80%;
             }
 
             /* add blue ring when clicked inside */
             .input-group input:focus{
                 border-color: yellow;
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
-            }
-
-            .input-group select{
-                width: 70px;
             }
 
             #date input{
@@ -153,6 +150,7 @@
                 background-color: #ffffff;
                 cursor: pointer; /* change hand to a picky one to show it is interactive */
                 outline: none; /* standard button highlight (old) */
+                 width: 70px;
             }
 
             .input-group select:focus{
@@ -274,6 +272,53 @@
                 width: 200px;
                 cursor: pointer;
                 padding:2px 4px;
+            }
+
+            #top{
+                width: 1400px;
+                border: 1px solid blue;
+                height: 60px;
+                padding: 2px 2px;
+            }
+
+            #top-menu{
+                width:300px;
+                height: 30px;
+                margin: 0px 550px;
+                border: 1px solid green;
+                padding-bottom: 17px;
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            .section-title{
+                border: 1px solid maroon;
+                padding-left: 95px;
+                font-family: 'Franklin Gothic Medium';
+            }
+
+            #filter-out{
+                height: 470px;
+            }
+
+            #filter-all{
+                flex-direction: row;
+                gap: 20px;
+                border: 1px solid #e5e7eb;
+                border-radius: 6px;
+                padding: 6px 6px;
+                margin-bottom: 20px; /* outer space */
+                width: 95%;
+            }
+
+            #interval{
+                border: 1px solid blueviolet;
+                padding-left: 110px;
+                font-family: 'Franklin Gothic Medium';
+                font-size: 14;
+                margin: 0px 0px;
+                margin-bottom: 20px;
+
             }
         </style>
     </head>
