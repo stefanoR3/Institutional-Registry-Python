@@ -20,5 +20,9 @@ def registru():
     return render_template('registru.html', title='Registru')
 
 @app.route('/filter')
-def fillter():
+def filter():
     return render_template('filtru.html')
+
+@app.route('/iesire')
+def iesire():
+    return render_template('iesire.html')

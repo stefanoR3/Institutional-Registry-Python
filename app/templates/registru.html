@@ -74,6 +74,42 @@
                 border: 2px solid rgba(29, 228, 238, 0.528); /*debug*/
             }
 
+            #out-panel{
+                width:80%;
+                height: 80%;
+                margin-left: 240px;
+                margin-right: 240px;
+            }
+
+            #out-1{
+                width: 200px;
+                height: 190px;
+                justify-content: space-between;
+            }
+
+             #out-2{
+                width: 280px;
+                height: 190px;
+                justify-content: space-between;
+            }
+
+            #out-top{
+                justify-content: center;
+                border: 0.5px solid aliceblue;
+                width: 600px;
+                margin-left: 70px;
+                height: 200px;
+            }
+
+            #out-2-in{
+                height: 120px;
+                width: 70%;
+            }
+
+            .text-large{
+                min-height: 60px;
+            }
+
             .form-section{
                 display: flex;
                 flex-direction: column;
@@ -217,6 +253,20 @@
                 margin: 1px 0px;
             }
 
+            .filter-buttons{
+                background-color: rgba(62, 78, 201, 0.356);
+                border: 2px solid rgba(53, 248, 228, 0.201);
+                border-radius: 4px;
+                text-align: center;
+                width: 200px;
+                height:50px;
+                cursor: pointer;
+                padding:2px 4px;
+                margin: 1px 0px;
+                font-family: Tahoma;
+                font-weight: 300;
+            }
+
             #first-column{
             width:300px;
             }
@@ -318,7 +368,26 @@
                 font-size: 14;
                 margin: 0px 0px;
                 margin-bottom: 20px;
+            }
 
+            #filter-document{
+                height: 200px;
+            }
+
+            #filter-days{
+                width:30px;
+                text-align: center;
+            }
+
+            #filter-row{
+                text-align: center;
+                justify-content: space-between;
+                padding: 7px 0px;
+                height: 15px;
+            }
+
+            #button-filters{
+                height: 120px;
             }
         </style>
     </head>
@@ -446,7 +515,7 @@
                             <button tpye="button" class="repart-buttons">Anulare Document</button>
                             <button tpye="button" class="repart-buttons">Stergere Document</button>
                             <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
-                            <button type="button" class="repart-buttons">Adaugare Iesire</button>
+                            <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
                             <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
                             <button type="button" class="repart-buttons">Anulare Filtrare</button>
                             <button type="button" class="repart-buttons" id="close">Inchidere</button>
