@@ -11,173 +11,117 @@
             body{
                 background-color: rgba(1, 35, 54, 0.8);
             }
+            
+            /* layout structure */
 
-            .app-layout{
-                display: flex; /* used to sit list on the left and details on the right */
-                gap: 24px;
-                max-width: 1400px;
-                margin-top: 20px; /* prevent huge stretch on wide screens */
-                margin-left: auto; /* auto calculates automatically the margin needed */
-                margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
-                margin-bottom: 40px;
-                padding: 14px; /* outher breathing room */
-                /* border:2px solid blue; */
-                min-height:400px; /* this can't get smaller than this */
-                height: 800px;
-            }
+                .registry-list{
+                    display: flex; /* layout mode, used to stack items in column (cards). Flexbox is a html tool for alignment */
+                    flex-direction: column; /* stacks items vertically */
+                    gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
+                    width: 125px; /* without it the div would stretch to the entire width of the screen */
+                    /*border:2px solid; red; /*debug*/
+                }
 
-            .registry-list{
-                display: flex; /* layout mode, used to stack items in column (cards). Flexbox is a html tool for alignment */
-                flex-direction: column; /* stacks items vertically */
-                gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
-                width: 125px; /* without it the div would stretch to the entire width of the screen */
-                /*border:2px solid; red; /*debug*/
-            }
+                .app-layout{
+                    display: flex; /* used to sit list on the left and details on the right */
+                    gap: 24px;
+                    max-width: 1400px;
+                    margin-top: 20px; /* prevent huge stretch on wide screens */
+                    margin-left: auto; /* auto calculates automatically the margin needed */
+                    margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
+                    margin-bottom: 40px;
+                    padding: 14px; /* outher breathing room */
+                    /* border:2px solid blue; */
+                    min-height:400px; /* this can't get smaller than this */
+                    height: 800px;
+                }
 
-            .document-card{
-                background-color: #ffffff;
-                border: 1px solid #d1d5db; /* draw border around box - solid line - color */
-                padding: 16 px; /* space from the border to not look suffocated */
-                border-radius: 8px; /* make the edges more curvy */
+                .details-panel{
+                    flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
+                    display: flex;
+                    gap:12px;
+                    background-color: #ffffff;
+                    /*border: 1px solid #d1d5fb;*/
+                    border-radius: 8px;
+                    padding: 5px; /* pads the future elements inside to the actual borders */
+                    border: 2px solid rgba(29, 228, 238, 0.528); /*debug*/
+                }
 
-                display: flex; /* row alignment, used to stack number and date in row(card) */
-                justify-content: space-between; /* left and right alignment */
-                align-items: center; /* alogn them vertically (no up and downs) */
-            }
+                .input-group{
+                    display: flex; /* text on top of the box */
+                    flex-direction: column;
+                    gap: 6px; /* gap between label and input */
+                    /* border: 1px solid black; */
+                    max-width: 300px;
+                }
 
-            /* only apply this rules if an element has both teh document-card and active class together */
-            .document-card.active{
-                background-color: #eff6ff;
-                /*border-color: #3b82f6;*/
-                border-left: 4px solid #2563eb; /* only the left border */
-            }
+                .form-section{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 6px;
+                    padding: 6px;
+                    margin-bottom: 20px; /* outer space */
+                    width: 280px;
+                }
 
-            .doc-number{
-                font-weight: bold; /* ticker */
-                color:rgb(143, 82, 7); /* text color */
-            }
+                .form-column{
+                    display: flex;
+                    flex-direction: column;
+                    /*border: 1px solid violet;*/
+                    padding: 1.5px;
+                }
 
-            .doc-date{
-                font-size: 14px;
-                color:rgb(143, 82, 7);
-                margin-top: 4px; /* space from the top */
-            }
+                .form-row{
+                    display: flex; /* put the inputs side by side */
+                    /*gap: 20px;*/
+                    justify-content: space-between;
+                }
 
-            .details-panel{
-                flex: 1; /* take one share of remaining space; it is greedy to take all the right free space. It is not fixed */
-                display: flex;
-                gap:12px;
-                background-color: #ffffff;
-                /*border: 1px solid #d1d5fb;*/
-                border-radius: 8px;
-                padding: 5px; /* pads the future elements inside to the actual borders */
-                border: 2px solid rgba(29, 228, 238, 0.528); /*debug*/
-            }
+                .check-box-row{
+                    display: flex;
+                    align-items: center;
+                    min-height: 40px;
+                    justify-content:start;
+                }
 
-            #out-panel{
-                width:80%;
-                height: 80%;
-                margin-left: 240px;
-                margin-right: 240px;
-            }
+                .separator{
+                border-top: 1.2px solid saddlebrown;
+                }
 
-            #out-1{
-                width: 200px;
-                height: 190px;
-                justify-content: space-between;
-            }
+                .input-size{
+                max-width: 150px;
+                min-width: 100px;
+                width: auto;
+                }
 
-             #out-2{
-                width: 280px;
-                height: 190px;
-                justify-content: space-between;
-            }
+            /*sub-layout structure*/
 
-            #out-top{
-                justify-content: center;
-                border: 0.5px solid aliceblue;
-                width: 600px;
-                margin-left: 70px;
-                height: 200px;
-            }
+                .input-group label{
+                    font-size: 16px;
+                    color: #4b5563;
+                    font-weight:bold;
+                }
 
-            #out-2-in{
-                height: 120px;
-                width: 70%;
-            }
+                /* descendent selector(aprent-child replationship) */
+                /* find input-group class and apply those rules to any label(tag) inside */
+                .input-group input{
+                    padding: 8px 4px; /* top-bottom left-right */
+                    /* border: 1px solid #d1d5db; */
+                    border-radius: 4px;
+                    font-size: 14px;
+                    outline: none;
+                    width: 80%;
+                }
 
-            .text-large{
-                min-height: 60px;
-            }
+                /* add blue ring when clicked inside */
+                .input-group input:focus{
+                    border-color: yellow;
+                    box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
+                }
 
-            .form-section{
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                border: 1px solid #e5e7eb;
-                border-radius: 6px;
-                padding: 6px;
-                margin-bottom: 20px; /* outer space */
-                width: 280px;
-            }
-
-            .form-column{
-                display: flex;
-                flex-direction: column;
-                /*border: 1px solid violet;*/
-                padding: 1.5px;
-            }
-
-            .section-title{
-                font-size: 16px;
-                color: #374151;
-                margin-bottom: 12px;
-                border-bottom: 1px solid #e5e7eb;
-                padding-bottom: 8px;
-            }
-
-            .form-row{
-                display: flex; /* put the inputs side by side */
-                /*gap: 20px;*/
-                justify-content: space-between;
-            }
-
-            .input-group{
-                display: flex; /* text on top of the box */
-                flex-direction: column;
-                gap: 6px; /* gap between label and input */
-                border: 1px solid black;
-                max-width: 300px;
-            }
-
-            .input-group label{
-                font-size: 16px;
-                color: #4b5563;
-                font-weight:bold;
-            }
-
-            /* descendent selector(aprent-child replationship) */
-            /* find input-group class and apply those rules to any label(tag) inside */
-            .input-group input{
-                padding: 8px 4px; /* top-bottom left-right */
-                border: 1px solid #d1d5db;
-                border-radius: 4px;
-                font-size: 14px;
-                outline: none;
-                width: 80%;
-            }
-
-            /* add blue ring when clicked inside */
-            .input-group input:focus{
-                border-color: yellow;
-                box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3); /* 0.3 = transparency */
-            }
-
-            #date input{
-                width: 75px;
-            }
-
-            .input-group select{
+                .input-group select{
                 padding: 8px 8px;
                 border: 1px solid #d1d5db;
                 border-radius: 4px;
@@ -187,11 +131,104 @@
                 cursor: pointer; /* change hand to a picky one to show it is interactive */
                 outline: none; /* standard button highlight (old) */
                  width: 70px;
-            }
+                }
 
-            .input-group select:focus{
+                .input-group select:focus{
                 border-color: #3b82f6;
                 box-shadow: 0 0 0 1.1px rgba(59, 130, 246, 0.3)
+                }
+
+                .check-box-row label{
+                font-size: 16px;
+                color: #4b5563;
+                font-weight:bold;
+                }
+
+            /* -------------------------------------- */
+
+            /* document-card section */
+                .document-card{
+                    background-color: #ffffff;
+                    border: 1px solid #d1d5db; /* draw border around box - solid line - color */
+                    padding: 16 px; /* space from the border to not look suffocated */
+                    border-radius: 8px; /* make the edges more curvy */
+
+                    display: flex; /* row alignment, used to stack number and date in row(card) */
+                    justify-content: space-between; /* left and right alignment */
+                    align-items: center; /* alogn them vertically (no up and downs) */
+                }
+
+                /* only apply this rules if an element has both teh document-card and active class together */
+                .document-card.active{
+                    background-color: #eff6ff;
+                    /*border-color: #3b82f6;*/
+                    border-left: 4px solid #2563eb; /* only the left border */
+                }
+
+                .doc-number{
+                    font-weight: bold; /* ticker */
+                    color:rgb(143, 82, 7); /* text color */
+                }
+
+                .doc-date{
+                    font-size: 14px;
+                    color:rgb(143, 82, 7);
+                    margin-top: 4px; /* space from the top */
+                }
+
+                #date input{
+                    width: 75px;
+                }
+
+            /* -------------------------------------- */
+
+            /*buttons*/
+                .repart-buttons{
+                    background-color: rgba(25, 240, 176, 0.1);
+                    border: 2px solid rgba(25, 240, 176, 0.2);
+                    border-radius: 4px;
+                    text-align: center;
+                    width: 200px;
+                    cursor: pointer;
+                    padding:2px 4px;
+                    margin: 1px 0px;
+                }
+
+                .filter-buttons{
+                    background-color: rgba(62, 78, 201, 0.356);
+                    border: 2px solid rgba(53, 248, 228, 0.201);
+                    border-radius: 4px;
+                    text-align: center;
+                    width: 200px;
+                    height:50px;
+                    cursor: pointer;
+                    padding:2px 4px;
+                    margin: 1px 0px;
+                    font-family: Tahoma;
+                    font-weight: 300;
+                }
+
+            /* -------------------------------------- */
+
+            /* registru template */
+
+            .text-in{
+                max-width: 100px;
+            }
+
+            .text-large{
+                width: 100px;
+                height: 100px;
+                vertical-align: top;
+                box-sizing: border-box;
+            }
+
+            .section-title{
+                font-size: 16px;
+                color: #374151;
+                margin-bottom: 12px;
+                border-bottom: 1px solid #e5e7eb;
+                padding-bottom: 8px;
             }
 
             .hidden-input{
@@ -215,56 +252,8 @@
                 display: block; /* overrides display:hide */
             }
 
-            .separator{
-                border-top: 1.2px solid saddlebrown;
-            }
-
-            .input-size{
-                max-width: 150px;
-                min-width: 100px;
-                width: auto;
-            }
-
-            .check-box-row{
-                display: flex;
-                align-items: center;
-                min-height: 40px;
-                justify-content:start;
-            }
-
-            .check-box-row label{
-                font-size: 16px;
-                color: #4b5563;
-                font-weight:bold;
-            }
-
             .text-modal{
                 border: 1px solid green;
-            }
-
-            .repart-buttons{
-                background-color: rgba(25, 240, 176, 0.1);
-                border: 2px solid rgba(25, 240, 176, 0.2);
-                border-radius: 4px;
-                text-align: center;
-                width: 200px;
-                cursor: pointer;
-                padding:2px 4px;
-                margin: 1px 0px;
-            }
-
-            .filter-buttons{
-                background-color: rgba(62, 78, 201, 0.356);
-                border: 2px solid rgba(53, 248, 228, 0.201);
-                border-radius: 4px;
-                text-align: center;
-                width: 200px;
-                height:50px;
-                cursor: pointer;
-                padding:2px 4px;
-                margin: 1px 0px;
-                font-family: Tahoma;
-                font-weight: 300;
             }
 
             #first-column{
@@ -272,27 +261,29 @@
             }
 
             #second-column{
-                width: 500px;
+                width: 650px;
                 flex-direction: row;
             }
 
-            #third-column{
-                width: 280px;
-                height: auto;
-            }
-
             #second-fs{
-                height: 250px;
-                width: 250px;
+                height: 300px;
+                width: 325px;
             }
 
             #third-fs{
-                height: auto;
-                width:250px;
+                height:375px;
+                width:310px;
+            }
+
+            #fourth-fs{
+                width: 200px;
+                height: 325px;
+                margin-right: 0px;
+                padding: 5px 5px;
             }
 
             #aux-input-1{
-                width:200px;
+                width:300px;
             }
 
             #aux-input-2{
@@ -324,34 +315,38 @@
                 padding:2px 4px;
             }
 
-            #top{
-                width: 1400px;
-                border: 1px solid blue;
-                height: 60px;
-                padding: 2px 2px;
-            }
-
-            #top-menu{
-                width:300px;
-                height: 30px;
-                margin: 0px 550px;
-                border: 1px solid green;
-                padding-bottom: 17px;
-                padding-left: 22px;
-                padding-right: 22px;
-            }
-
             .section-title{
                 border: 1px solid maroon;
                 padding-left: 95px;
                 font-family: 'Franklin Gothic Medium';
             }
 
-            #filter-out{
-                height: 470px;
+            #iesire-title{
+                text-align: center;
+                font-family: 'Franklin Gothic Medium';
+                color: rgba(11, 92, 139, 0.8);
             }
 
-            #filter-all{
+            /* filter template */
+            
+                #top{
+                    width: 1400px;
+                    border: 1px solid blue;
+                    height: 60px;
+                    padding: 2px 2px;
+                }
+
+                #top-menu{
+                    width:300px;
+                    height: 30px;
+                    margin: 0px 550px;
+                    border: 1px solid green;
+                    padding-bottom: 17px;
+                    padding-left: 22px;
+                    padding-right: 22px;
+                }
+
+                #filter-all{
                 flex-direction: row;
                 gap: 20px;
                 border: 1px solid #e5e7eb;
@@ -359,36 +354,85 @@
                 padding: 6px 6px;
                 margin-bottom: 20px; /* outer space */
                 width: 95%;
-            }
-
-            #interval{
+                }
+            
+                #interval{
                 border: 1px solid blueviolet;
                 padding-left: 110px;
                 font-family: 'Franklin Gothic Medium';
                 font-size: 14;
                 margin: 0px 0px;
                 margin-bottom: 20px;
-            }
+                }
 
-            #filter-document{
-                height: 200px;
-            }
+                #filter-out{
+                height: 470px;
+                }
 
-            #filter-days{
-                width:30px;
-                text-align: center;
-            }
+                #filter-document{
+                    height: 200px;
+                }
 
-            #filter-row{
-                text-align: center;
-                justify-content: space-between;
-                padding: 7px 0px;
-                height: 15px;
-            }
+                #filter-days{
+                    width:30px;
+                    text-align: center;
+                }
 
-            #button-filters{
+                #filter-row{
+                    text-align: center;
+                    justify-content: space-between;
+                    padding: 7px 0px;
+                    height: 15px;
+                }
+
+                #button-filters{
                 height: 120px;
-            }
+                }
+
+            /* -------------------------------------- */
+
+            /* iesire template */
+
+                #out-panel{
+                    width:80%;
+                    height: 80%;
+                    margin-left: 240px;
+                    margin-right: 240px;
+                }
+
+                #out-1{
+                    width: 200px;
+                    height: 190px;
+                    justify-content: space-between;
+                }
+
+                #out-2{
+                    width: 280px;
+                    height: 190px;
+                    justify-content: space-between;
+                }
+
+                #out-top{
+                    justify-content: center;
+                    border: 0.5px solid aliceblue;
+                    width: 600px;
+                    margin-left: 70px;
+                    height: 200px;
+                    margin-bottom: 0px;
+                }
+
+                #out-2-in{
+                    height: 120px;
+                    width: 70%;
+                }
+
+                #cont-dest{
+                    margin-top: 1px;
+                    margin-left: 200px;
+                }
+            
+            /* -------------------------------------- */
+
         </style>
     </head>
     <body>
@@ -472,7 +516,7 @@
                         <div class="separator"></div>
                         <div class="input-group" id="aux-input-1">
                             <label>Conținut intrare</label>
-                            <input type="text" value="">
+                            <textarea name="cont-intrare" cols="10" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-section" id="third-fs">
@@ -486,40 +530,40 @@
                                 <label>la data</label>
                                 <input type="date" value="20/02/2026">
                             </div>
-                            <div class="input-group">
-                                <label>Nr-I-Dest</label>
-                                <input type="text" value=""> 
-                            </div>
                         </div>
                         <div class="separator"></div>
                         <div class="input-group">
                             <label>Conținut ieșire</label>
-                            <input type="text" value="">
+                            <textarea name="cont-iesire" cols="7" rows="5"></textarea>
                         </div>
-                        <div class="input-group">
-                            <label>Mod ieșire</label>
-                            <select>
-                                <option value="mail">mail</option>
-                                <option value="poștă">poștă</option>
-                                <option value="direct">direct</option>
-                            </select>
+                        <div class="form-row">
+                            <div class="input-group">
+                                    <label>Nr-I-Dest</label>
+                                    <input type="text" value=""> 
+                                </div>
+                            <div class="input-group">
+                                <label>Mod ieșire</label>
+                                <select>
+                                    <option value="mail">mail</option>
+                                    <option value="poștă">poștă</option>
+                                    <option value="direct">direct</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-column" id="third-column">
-                    <div class="form-section">
-                        <div class="input-group">
-                            <button type="button" class="repart-buttons" >Asociere Document</button>
-                            <button tpye="button" class="repart-buttons">Modificare Document</button>
-                            <button type="button" class="repart-buttons">Anulare Raspuns</button>
-                            <button tpye="button" class="repart-buttons">Anulare Document</button>
-                            <button tpye="button" class="repart-buttons">Stergere Document</button>
-                            <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
-                            <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
-                            <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
-                            <button type="button" class="repart-buttons">Anulare Filtrare</button>
-                            <button type="button" class="repart-buttons" id="close">Inchidere</button>
-                        </div>
+                <div class="form-section" id="fourth-fs">
+                    <div class="input-group">
+                        <button type="button" class="repart-buttons" >Asociere Document</button>
+                        <button tpye="button" class="repart-buttons">Modificare Document</button>
+                        <button type="button" class="repart-buttons">Anulare Raspuns</button>
+                        <button tpye="button" class="repart-buttons">Anulare Document</button>
+                        <button tpye="button" class="repart-buttons">Stergere Document</button>
+                        <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
+                        <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
+                        <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
+                        <button type="button" class="repart-buttons">Anulare Filtrare</button>
+                        <button type="button" class="repart-buttons" id="close">Inchidere</button>
                     </div>
                 </div>
             </div>
