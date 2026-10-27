@@ -26,3 +26,7 @@ def filter():
 @app.route('/iesire')
 def iesire():
     return render_template('iesire.html')
+
+@app.route('/intrare')
+def intrare():
+    return render_template('intrare.html')

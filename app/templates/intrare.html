@@ -1,0 +1,98 @@
+<div class="form-section" id="in-panel">
+    <h3 id="iesire-title">Intrare</h3>
+    <div class="form-row" id="in-top">
+        <div class="input-group" id="in-1">
+            <div class="check-box-row" id="first-box">
+                <label>Numar document</label>
+                <input type="text">
+            </div>
+            <div class="check-box-row">
+                <label>Din data</label>
+                <input type="date">
+            </div>
+        </div>
+        <div class="input-group" id="in-2">
+            <div class="form-row" id="in-mod-tip">
+                <div class="input-group">
+                    <label>Mod intrare</label>
+                    <select>
+                        <option value="mail">mail</option>
+                        <option value="poștă">poștă</option>
+                        <option value="direct">direct</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Tip intrare</label>
+                    <select>
+                        <!-- to ask to prof -->
+                        <option value="hardcore">aux</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="check-box-row">
+                    <label for="toggle-extra">Termen</label> <!-- clicking for will ceck the box-->
+                    <input type="checkbox" class="toggle-extra" id="tg">
+                    <input type="text" class="hidden-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row" id="forth-box">
+        <div class="form-section" id="cont-dest">
+            <div class="input-group">
+                <label for class="text">Emitent</label>
+                <input type="text">
+            </div>
+            <div class="input-group" id="nr-inreg-in">
+                <label>Nr inreg em</label>
+                <input type="text">
+            </div>
+            <div class="input-group">
+                <label for class="textarea">Continut intrare</label>
+                <textarea name="continut" cols="40" rows="6"></textarea>
+            </div>
+        </div>
+        <div class="form-section" id="fourth-row">
+            <div class="check-box-row" id="forth-sec">
+                <button class="repart-buttons">Modifica repartizarile</button>
+                <label id="sol-label">
+                    <input type="checkbox" id="toggle">
+                    Soluționat/Răspuns
+                </label>
+            </div>
+            <div class="hidden-input form-section" id="sol-rasp">
+                <div class="form-row" id="sol-rasp-row">
+                    <div class="input-group">
+                        <label for class="input">la data</label>
+                        <input type="date">
+                    </div>
+                    <div class="input-group">
+                        <label>Nr-I-Dest</label>
+                        <input type="text" value=""> 
+                    </div>
+                </div>
+                <div class="form-row" id="last-row">
+                    <div class="input-group">
+                        <label>Continut</label>
+                        <textarea cols="7" rows="5"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Mod ieșire</label>
+                        <select>
+                            <option value="mail">mail</option>
+                            <option value="poștă">poștă</option>
+                            <option value="direct">direct</option>
+                        </select>
+                        <label>Mail</label>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="repart-buttons" id="save">Accept</button>
+        <button class="repart-buttons" id="quit">Renunt</button>
+    </div>
+</div>

@@ -45,6 +45,7 @@
                     border-radius: 8px;
                     padding: 5px; /* pads the future elements inside to the actual borders */
                     border: 2px solid rgba(29, 228, 238, 0.528); /*debug*/
+                    /* background-color: #374151; */
                 }
 
                 .input-group{
@@ -394,30 +395,32 @@
             /* iesire template */
 
                 #out-panel{
-                    width:80%;
-                    height: 80%;
-                    margin-left: 240px;
-                    margin-right: 240px;
+                    width:85%;
+                    height: 85%;
+                    margin-left: 100px;
+                    margin-top: 10px;
                 }
 
                 #out-1{
-                    width: 200px;
+                    width: 300px;
                     height: 190px;
-                    justify-content: space-between;
+                    padding: 20px 20px;
                 }
 
                 #out-2{
-                    width: 280px;
+                    width: 300px;
                     height: 190px;
                     justify-content: space-between;
+                    margin-left: 60px;
+                    padding: 20px 20px;
                 }
 
                 #out-top{
                     justify-content: center;
                     border: 0.5px solid aliceblue;
-                    width: 600px;
+                    width: 900px;
                     margin-left: 70px;
-                    height: 200px;
+                    height: 220px;
                     margin-bottom: 0px;
                 }
 
@@ -426,12 +429,172 @@
                     width: 70%;
                 }
 
-                #cont-dest{
+                #cont-dest-out{
                     margin-top: 1px;
-                    margin-left: 200px;
+                    margin-left: 370px;
                 }
             
+                #first-box{
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                }
+
+                #save{
+                    background-color: rgba(20, 163, 84, 0.505);
+                    height: 40px;
+                }
+
+                #quit{
+                    background-color: rgba(174, 32, 16, 0.432);
+                    height: 40px;
+                }
+
             /* -------------------------------------- */
+
+            /* intrare template */
+
+                #in-panel{
+                    width:85%;
+                    height: 90%;
+                    margin-left: 100px;
+                    margin-top: 10px;
+                }
+
+                #in-1{
+                    width: 300px;
+                    height: 150px;
+                    padding: 10px 10px;
+                }
+
+                #in-2{
+                    width: 300px;
+                    height: 190px;
+                    justify-content: space-between;
+                    margin-left: 60px;
+                    padding: 20px 20px;
+                }
+
+                #in-2 input{
+                    padding: 2px 2px; /* top-bottom left-right */
+                    /* border: 1px solid #d1d5db; */
+                    border-radius: 4px;
+                    font-size: 14px;
+                    outline: none;
+                    width: 80%;
+                }
+
+                #in-top{
+                    justify-content: center;
+                    border: 0.5px solid aliceblue;
+                    width: 900px;
+                    margin-left: 70px;
+                    height: 220px;
+                    margin-bottom: 0px;
+                }
+
+                #in-2-in{
+                    height: 120px;
+                    width: 70%;
+                }
+
+                #cont-dest{
+                    margin-top: 1px;
+                    margin-left: 2px;
+                }
+            
+                #first-box{
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                }
+
+                #save{
+                    background-color: rgba(20, 163, 84, 0.505);
+                    height: 40px;
+                }
+
+                #quit{
+                    background-color: rgba(174, 32, 16, 0.432);
+                    height: 40px;
+                }
+
+                #forth-box{
+                    width: 900px;
+                    margin-left: 80px;
+                }
+
+                #fourth-row{
+                    width: 80%;
+                    margin-left: 2px;
+                    flex-direction: column;
+                }
+
+            /* ~ = all siblings, + = only next sibling, if next */
+                #forth-sec:has(#toggle:checked) +.hidden-input{
+                    display: block;
+                }
+
+                #in-mod-tip{
+                    width:250px;
+                }
+
+                #in-termen{
+                    width: 250px;
+                    border: 1px solid green;
+                }
+
+                #in-check-box{
+                    border: 1px solid blue;
+                    padding: 2px 2px;
+                    margin: 2px 2px;
+                    width: 50%;
+                }
+
+                #nr-inreg-in{
+                    width: 50%;
+                }
+
+                #tg{
+                    width: 10%;
+                }
+                #forth-sec{
+                    height: auto;
+                    width: auto;
+                }
+
+                #hidden-sol-rasp{
+                    height: 121px;
+                    width:200px;
+                    margin: 0px 0px;
+                }
+
+                #sol-rasp{
+                    height: 200px;
+                    width: 550px;
+                    margin: 0px 0px;
+                    flex-direction: column;
+                }
+
+                #sol-rasp-row{
+                    width: 80%;
+                    height: 40px;
+                    margin: 0px 0px;
+                    margin-bottom: 35px;
+                }
+
+                #sol-label{
+                    margin-left: 20px;
+                }
+
+                #last-row{
+                    width: 400px;
+                }
+
+                #last-sub-row{
+                    margin-left: 30px;
+                    width: 120px;
+                }
+
+             /* -------------------------------------- */
 
         </style>
     </head>
@@ -498,7 +661,7 @@
                         <div class="check-box-row">
                             <label for="toggle-extra">Termen</label> <!-- clicking for will ceck the box-->
                             <input type="checkbox" class="toggle-extra">
-                            <input type="text" class="hidden-input">
+                            <input type="date" class="hidden-input">
                         </div>
                     </div>
                 </div>
@@ -522,7 +685,7 @@
                     <div class="form-section" id="third-fs">
                         <div class="check-box-row">
                             <label for class="toggle-extra">Soluționat/Răspuns</label>
-                            <input type="checkbox" >
+                            <input type="checkbox">
                         </div>
                         <div class="separator"></div>
                         <div class="form-row">
@@ -538,9 +701,9 @@
                         </div>
                         <div class="form-row">
                             <div class="input-group">
-                                    <label>Nr-I-Dest</label>
-                                    <input type="text" value=""> 
-                                </div>
+                                <label>Nr-I-Dest</label>
+                                <input type="text" value=""> 
+                            </div>
                             <div class="input-group">
                                 <label>Mod ieșire</label>
                                 <select>
@@ -559,7 +722,7 @@
                         <button type="button" class="repart-buttons">Anulare Raspuns</button>
                         <button tpye="button" class="repart-buttons">Anulare Document</button>
                         <button tpye="button" class="repart-buttons">Stergere Document</button>
-                        <button tpye="button" class="repart-buttons">Adaugare Intrare</button>
+                        <button tpye="button" class="repart-buttons" hx-get="/intrare" hx-target=".details-panel">Adaugare Intrare</button>
                         <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
                         <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
                         <button type="button" class="repart-buttons">Anulare Filtrare</button>
