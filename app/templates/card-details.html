@@ -1,0 +1,115 @@
+
+<div class="form-column" id="first-column">
+    <div class="form-section">
+        <div class="form-row"><!-- numar/data -->
+            <div class="input-group" id="number"> <!-- input: document number -->
+                <label>Număr document</label>
+                {% if document_number %}
+                    <input type="text" value={{document_number}}>
+                {% endif %}
+            </div>
+            <div class="input-group" id="date"> <!-- input: document date -->
+                <label>din data:</label>
+                {% if document_date %}
+                    <input type="text" value={{document_date}}>
+                {% endif %}
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="form-row">
+            <div class="input-group"> <!-- mod intrare/tip intrare-->
+                <label>Mod intrare</label>
+                <select>
+                    <option value="{{input_mode}}">{{input_mode}}</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Tip intrare</label>
+                <select>
+                <!-- to ask to prof -->
+                    <option value="{{type_mode}}">{{type_mode}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-section">
+        <div class="input-group">
+            <label>Emitent</label>
+            <select id="issuer-select">
+                <option value="{{issuer}}">{{issuer}}</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Nr înregistrare emitent</label>
+            <input type="text" value="{{nr_issuer}}">
+        </div>
+        <div class="separator"></div>
+        <div class="check-box-row">
+            <label for="toggle-extra">Termen</label> <!-- clicking for will ceck the box-->
+            <input type="checkbox" class="toggle-extra">
+            <input type="date" class="hidden-input">
+        </div>
+    </div>
+</div>
+<div class="form-column" id="second-column">
+    <div class="form-section" id="second-fs">
+        <div class="check-box-row">
+            <label for="toggle-extra">Document repartizat</label>
+            <input type="checkbox" class="toggle-extra">
+        </div>      <!-- css can only style!-->
+        <div class="input-group" id="aux-input-2">
+            <button type="button" class="repart-buttons">Modifică repartizări</button>
+            <button type="button" class="repart-buttons">Vezi repartizări</button>
+            <button type="button" class="repart-buttons">Anulează repartizări</button>
+        </div>
+        <div class="separator"></div>
+        <div class="input-group" id="aux-input-1">
+            <label>Conținut intrare</label>
+            <textarea name="cont-intrare" cols="10" rows="5">{{description_in}}</textarea>
+        </div>
+    </div>
+    <div class="form-section" id="third-fs">
+        <div class="check-box-row">
+            <label for class="toggle-extra">Soluționat/Răspuns</label>
+            <input type="checkbox" id="">
+        </div>
+        <div class="separator"></div>
+        <div class="form-row">
+            <div class="input-group" id="date">
+                <label>la data</label>
+                <input type="text" value={{solutionated_data}}>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="input-group">
+            <label>Conținut ieșire</label>
+            <textarea name="cont-iesire" cols="7" rows="5"></textarea>
+        </div>
+        <div class="form-row">
+            <div class="input-group">
+                <label>Nr-I-Dest</label>
+                <input type="text" value={{nr_dest}}> 
+            </div>
+            <div class="input-group">
+                <label>Mod ieșire</label>
+                <select>
+                    <option value={{out_mode}}>{{out_mode}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-section" id="fourth-fs">
+    <div class="input-group">
+        <button type="button" class="repart-buttons" >Asociere Document</button>
+        <button tpye="button" class="repart-buttons">Modificare Document</button>
+        <button type="button" class="repart-buttons">Anulare Raspuns</button>
+        <button tpye="button" class="repart-buttons">Anulare Document</button>
+        <button tpye="button" class="repart-buttons">Stergere Document</button>
+        <button tpye="button" class="repart-buttons" hx-get="/intrare" hx-target=".details-panel">Adaugare Intrare</button>
+        <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
+        <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
+        <button type="button" class="repart-buttons">Anulare Filtrare</button>
+        <button type="button" class="repart-buttons" id="close">Inchidere</button>
+    </div>
+</div>

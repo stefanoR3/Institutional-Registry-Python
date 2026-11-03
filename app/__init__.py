@@ -6,6 +6,7 @@ import config #? how does he know location
 app = Flask(__name__)
 
 app.config.from_object(config.Config)
+app.jinja_env.filters['zip'] = zip #for template zip iterations
 
 from app import routes #(routes.py)
 

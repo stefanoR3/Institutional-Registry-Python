@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import registry_module as reg_mod
 import traceback
 
 def format_registry_data(df:pd.DataFrame) -> pd.DataFrame:
@@ -55,10 +56,11 @@ def parse_description(row: pd.Series) -> str:
         description = row['continut_ies']
     return description
 
-def get_registry_data(records:list[dict])->pd.DataFrame:
+def get_registry_data()->pd.DataFrame:
     #convert data into data frame for clean/export
     #axis 0 = columns, axis 1 = rows
 
+    records = reg_mod.fetch_registry_records()
     df = pd.DataFrame(records, columns=["iddoc","nrinreg","dtinreg","subnrinreg","subdtinreg","inties","modintrare","tipintrare","termen_zile","termen_data","emitent","emailemitent","nrinregemit","dtinregemit","destinatar","emaildestinatar","compartiment_ies","continut_int",
             "continut_ies","repartdanu","repartizat","dtrepar","tipiesire","modexp","solras_danu","solras_data","nrinregdest","dtinregdest","nrinreg_cnx","dtinreg_cnx","inddos","mot_anul","stare","utilizator","last_update"
     ])

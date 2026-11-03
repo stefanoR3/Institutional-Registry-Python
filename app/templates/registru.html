@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js" integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg" crossorigin="anonymous"></script>
         <style>
             body{
-                background-color: rgba(1, 35, 54, 0.8);
+                /*background-color: rgba(1, 35, 54, 0.8);*/
             }
             
             /* layout structure */
@@ -20,6 +20,8 @@
                     gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
                     width: 125px; /* without it the div would stretch to the entire width of the screen */
                     /*border:2px solid; red; /*debug*/
+                    height: auto;
+                    overflow-y: auto;
                 }
 
                 .app-layout{
@@ -157,6 +159,7 @@
                     display: flex; /* row alignment, used to stack number and date in row(card) */
                     justify-content: space-between; /* left and right alignment */
                     align-items: center; /* alogn them vertically (no up and downs) */
+                    cursor: pointer;
                 }
 
                 /* only apply this rules if an element has both teh document-card and active class together */
@@ -610,6 +613,15 @@
                         <div class="doc-number">18985</div> <!-- div stands for division (empty box)-->
                         <div class="doc-date">28/09/2026</div> <!-- we can think the class a sticky note to css-->
                     </div>
+                    {% for nr, date in nr_inreg_list|zip(data_list) %}
+                        <!-- hx-vals accepts and returns a json file -->
+                        <button class="document-card" hx-post="/card-details" hx-vals='{
+                            "number": "{{nr}}",
+                            "datee":"{{date}}" }' hx-target=".details-panel">
+                            <div class="doc-number">{{ nr }}</div>
+                            <div class="doc-date">{{ date }}</div>
+                        </button>
+                    {% endfor %}
                 </div>
             </div>
             <div class="details-panel"> <!-- first grouped section -->
@@ -619,7 +631,11 @@
                         <div class="form-row"><!-- numar/data -->
                             <div class="input-group" id="number"> <!-- input: document number -->
                                 <label>Număr document</label>
-                                <input type="text" value="675787">
+                                {% if document_number %}
+                                <input type="text" value={{document_number}}>
+                                {% else %}
+                                <input type="text" value="">
+                                {% endif %}
                             </div>
                             <div class="input-group" id="date"> <!-- input: document date -->
                                 <label>din data:</label>
