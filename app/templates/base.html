@@ -1,6 +1,8 @@
 <!doctype HTML>
-<html>
+<html lang="ro">
     <head>
+        <meta charset="UTF-8"> <!-- for romanian characters -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--prevent small screens from zooming out wierdly-->
         {% if title %}
         <title>
             {{title}}
@@ -10,13 +12,133 @@
             Registru Oficial - Consiliul Local Bacau
         </title>
         {% endif %}
+
+        <!--for inter font (modern)-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+        <style>
+            /* global variables */
+            :root {
+                --bg-main: #f1f5f9;
+                --bg-surface: #ffffff;
+                --bg-navbar: #0f172a;
+                --text-primary: #1e293b;
+                --text-muted: #64748b;
+                --text-navbar: #cbd5e1;
+                --acent-color: #2563eb;
+                --accent-hover: #1d4ed8;
+                --sidebar-width: 260px;
+                --navbar-height: 60px;
+                --border-color: #cbd5e1;
+                --radius: 8px;
+            }
+
+            /* global reset & base typo */
+            * {
+                box-sizing: border-box; /* does not add scaling if padding increase */
+                margin: 0;
+                padding: 0;
+            }
+
+            body{
+                /* fallback list, picks the first available */
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                background-color: var(--bg-main);
+                flex-direction: column;
+                color: var(--text-primary);
+                line-height: 1.6;
+                min-height: 100vh; /* viewport height, occupies all page height */
+                display: flex;
+            }
+
+            .top-navbar{
+                height: var(--navbar-height);
+                background-color: var(--bg-navbar);
+                color: #ffffff;
+                padding: 0 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: sticky; /* stays top when scrolling */
+                top: 0;
+                z-index: 100; /* keeps navbar on top layer */
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-brand {
+                display: flex;
+                align-items: baseline; /* even small text stays on baseline */
+                gap: 0.75rem;
+            }
+
+            .navbar-brand h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            }
+
+            .navbar-brand span {
+                font-size: 0.8rem;
+                color: #94a3b8;
+            }
+
+            .navbar-links a {
+                color: #cbd5e1;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                padding: 0.5rem 0.9rem;
+                border-radius: 6px;
+                transition: background-color 0.2s, color 0.2s;
+            }
+
+
+            .navbar-links a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #ffffff;
+            }
+
+            /* after we click; look inside navbar-links(parent), find <a>, check if it has attached active class */
+            .navbar-links a.active{
+                background-color: var(--acent-color);
+                color: #ffffff;
+            }
+
+            /* the moment we click */
+            .navbar-links a:active{
+                background-color: var(--acent-color);
+                color: #ffffff;
+            }
+
+            /* Main Workspace Container */
+            .page-workspace {
+                flex: 1;
+                width: 100%;
+                padding: 1.25rem 1.5 rem;
+            }
+        </style>
+
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
-    <div>
-        <a href="/index">Home</a>
-        <a href="/login">Login</a>
-        <a href="/registru">Registru</a>
-    </div>
-        {% block content %}{% endblock %}
+        <header class="top-navbar">
+            <div class="navbar-brand">
+                <h1>Registru Oficial</h1>
+                <span>Consiliul Local Bacau</span>
+            </div>
+            <nav class="navbar-links">
+                <!--request.path checks the current url (jinja2)-->
+                <a href="/index" class="{{'active' if request.path == '/index' else ''}}">Home</a>
+                <a href="/registru" class="{{'active' if request.path == '/registru' else ''}}">Registru</a>
+                <a href="/login" class="{{'active' if request.path == '/login' else ''}}">Login</a>
+            </nav>
+        </header>
+        <main class="page-workspace">
+            <!--child templates does not need head/body, instead css injected trough htmx -->
+            {% block content %}{% endblock %}
+        </main>
     </body>
 </html>
