@@ -38,6 +38,15 @@
             flex-direction: column;
             overflow: hidden; /*?*/
         }
+
+        .registry-sidebar-header {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background-color: #f8fafc;
+        }
         
         /* center-column */
         .details-panel{
@@ -100,25 +109,31 @@
         .form-section{
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            padding: 6px;
-            margin-bottom: 20px; /* outer space */
-            width: 280px;
+            gap: 1rem;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            width: 100%;
         }
 
         .form-column{
+            flex: 1;
             display: flex;
             flex-direction: column;
             /*border: 1px solid violet;*/
-            padding: 1.5px;
+            gap: 1.25rem; /* ? */
+            min-width: 0;
         }
 
         .form-row{
             display: flex; /* put the inputs side by side */
-            /*gap: 20px;*/
-            justify-content: space-between;
+            align-items: flex-end; /*keeps input aligned even if one label is longer*/
+            gap: 1rem;
+        }
+
+        .form-row .input-group{
+            flex: 1;
         }
 
         .check-box-row{
@@ -135,13 +150,27 @@
             cursor: pointer;
         }
 
+        .check-box-row .hidden-input{
+            width: auto; /* keeps the Termen date box compact next to label */
+            padding: 0.4rem 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 085 rem;
+
+        }
+
         .check-box-row label{
             cursor: pointer;
             user-select: None; /* disable text highlight when doubleclicking */
         }
 
+        #label-checkbox{
+            margin-right: 1.5px;
+        }
+
         .separator{
-        border-top: 1.2px solid saddlebrown;
+        border-top: 1.2px solid rgba(136, 129, 124, 0.356);
         }
 
         .input-size{
@@ -196,6 +225,7 @@
         font-size: 16px;
         color: #4b5563;
         font-weight:bold;
+        margin-right: 1.5px;
         }
 
         /* -------------------------------------- */
@@ -242,7 +272,27 @@
         }
 
         .date-group input{
-            width: 75px;
+            width: 150px;
+        }
+
+        .section-title{
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 0.25rem;
+        }
+        /* -------------------------------------- */
+
+        /*proportional split helpers*/
+
+        .flex-2{
+            flex: 2 !important; /* overrides other rules in cascade */
+        }
+
+        .flex-1{
+            flex: 1 !important;
         }
 
         /* -------------------------------------- */
@@ -264,6 +314,32 @@
             transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
         }
 
+        .repart-buttons:hover{
+            background-color: #e2e8f0;
+        }
+
+        .primary-buttons{
+            background-color: #2564ebe0;
+            border-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .primary-buttons:hover{
+            background-color: rgba(19, 174, 230, 0.485);
+            border-color: var(--accent-hover);
+        }
+
+        .danger-buttons{
+            color:  #dc2626;
+            background-color: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .danger-buttons:hover{
+            background-color:  #fee2e2;
+             border-color: #fca5a5;
+        }
+
         .filter-buttons{
             background-color: rgba(62, 78, 201, 0.356);
             border: 2px solid rgba(53, 248, 228, 0.201);
@@ -276,6 +352,20 @@
             margin: 1px 0px;
             font-family: Tahoma;
             font-weight: 300;
+        }
+
+        .menu-group-label{
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            margin-bottom: 0.15rem;
+        }
+
+        #first-label{
+            margin-top: 0.5rem;
         }
 
         /* -------------------------------------- */
@@ -667,7 +757,8 @@
 {% endblock %}
 {% block content %}
     <div class="app-layout">
-        <div class="registry-sidebar"> <!-- for future feets -->
+        <aside class="registry-sidebar"> <!--for future feets-->
+            <div class="registry-sidebar-header">Documente Înregistrate</div>
             <div class="registry-list">
                 <div class="document-card"> <!-- this div inherit both document-card and active class-->
                     <div class="doc-number">56456</div>
@@ -678,34 +769,34 @@
                     <div class="doc-date">28/09/2026</div> <!-- we can think the class a sticky note to css-->
                 </div>
             </div>
-        </div>
+        </aside>
         <div class="details-panel"> <!-- first grouped section -->
             <!--<h3 class="section-title">Document - Intrare</h3>-->
             <div class="form-column" id="first-column">
                 <div class="form-section">
+                    <h3 class="section-title">1. Data Înregistrare</h3>
                     <div class="form-row"><!-- numar/data -->
                         <div class="input-group" id="number"> <!-- input: document number -->
-                            <label>Număr document</label>
-                            <input type="text" value="675787">
+                            <label for="doc-num">Număr document</label>
+                            <input type="text" id="doc-num" value="675787">
                         </div>
                         <div class="input-group date-group"> <!-- input: document date -->
-                            <label>din data:</label>
-                            <input type="date" value="20/02/2026">
+                            <label for="doc-date">din data:</label>
+                            <input type="date" id="doc-date" value="2026-02-20">
                         </div>
                     </div>
-                    <div class="separator"></div>
                     <div class="form-row">
                         <div class="input-group"> <!-- mod intrare/tip intrare-->
-                            <label>Mod intrare</label>
-                            <select>
+                            <label for="mod intrare">Mod intrare</label>
+                            <select id="mod-intrare">
                                 <option value="mail">mail</option>
                                 <option value="poștă">poștă</option>
                                 <option value="direct">direct</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label>Tip intrare</label>
-                            <select>
+                            <label for="tip-intrare">Tip intrare</label>
+                            <select id="tip-intrare">
                             <!-- to ask to prof -->
                                 <option value="hardcore">aux</option>
                             </select>
@@ -713,22 +804,27 @@
                     </div>
                 </div>
                 <div class="form-section">
-                    <div class="input-group">
-                        <label>Emitent</label>
-                        <select id="issuer-select">
-                            <option value="Maria Dascalu">Maria Dascalu</option>
-                            <option value=""Marina Apreotesei">Marina Apreotesei</option>
-                        </select>
+                    <h3 class="section-title">2. Detalii Emitent & Termen</h3>
+                    <div class="form-row">
+                        <div class="input-group flex-2">
+                            <label for="issuer-select">Emitent</label>
+                            <select id="issuer-select">
+                                <option value="Maria Dascalu">Maria Dascalu</option>
+                                <option value="Marina Apreotesei">Marina Apreotesei</option>
+                            </select>
+                        </div>
+                        <div class="input-group flex-1">
+                            <label for="issuer-inreg" id="label-checkbox">Nr înregistrare emitent</label>
+                            <input type="text" id="issuer-inreg" value="">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>Nr înregistrare emitent</label>
-                        <input type="text" value="">
-                    </div>
-                    <div class="separator"></div>
-                    <div class="check-box-row">
-                        <label for="toggle-extra">Termen</label> <!-- clicking for will ceck the box-->
-                        <input type="checkbox" class="toggle-extra">
-                        <input type="date" class="hidden-input">
+                    <div>
+                        <div class="separator"></div>
+                        <div class="check-box-row">
+                            <input type="checkbox" class="toggle-extra" id="doc-term">
+                            <label for="doc-term">Termen</label> <!-- clicking for will ceck the box-->
+                            <input type="date" class="hidden-input">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -784,20 +880,21 @@
             </div>
         </div>
         <div class="actions-sidebar">
-            <div class="form-section" id="fourth-fs">
-                <div class="input-group">
-                    <button type="button" class="repart-buttons" >Asociere Document</button>
-                    <button type="button" class="repart-buttons">Modificare Document</button>
-                    <button type="button" class="repart-buttons">Anulare Raspuns</button>
-                    <button type="button" class="repart-buttons">Anulare Document</button>
-                    <button type="button" class="repart-buttons">Stergere Document</button>
-                    <button type="button" class="repart-buttons" hx-get="/intrare" hx-target=".details-panel">Adaugare Intrare</button>
-                    <button type="button" class="repart-buttons" hx-get="/iesire" hx-target=".details-panel">Adaugare Iesire</button>
-                    <button type="button" class="repart-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
-                    <button type="button" class="repart-buttons">Anulare Filtrare</button>
-                    <button type="button" class="repart-buttons" id="close">Inchidere</button>
-                </div>
-            </div>
+            <div class="menu-group-label" id="first-label">Operațiuni Document</div>
+            <button type="button" class="repart-buttons primary-buttons" hx-get="/intrare" hx-target=".details-panel">Adăugare Intrare</button>
+            <button type="button" class="repart-buttons primary-buttons" hx-get="/iesire" hx-target=".details-panel">Adăugare Ieșire</button>
+            <button type="button" class="repart-buttons">Modificare Document</button>
+            <button type="button" class="repart-buttons" >Asociere Document</button>
+
+            <div class="menu-group-label">Căutare & Filtrare</div>
+            <button type="button" class="repart-buttons primary-buttons" hx-get="/filter" hx-target=".details-panel">Filtrare</button>
+            <button type="button" class="repart-buttons danger-buttons">Anulare Filtrare</button>
+
+            <div class="menu-group-label">Anulare & Ștergere</div>
+            <button type="button" class="repart-buttons danger-buttons">Anulare Document</button>
+            <button type="button" class="repart-buttons danger-buttons">Anulare Răspuns</button>
+            <button type="button" class="repart-buttons danger-buttons">Ștergere Document</button>
+            <button type="button" class="repart-buttons danger-buttons">Închidere</button>
         </div>
     </div>
 {% endblock %}
