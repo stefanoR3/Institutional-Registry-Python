@@ -1,6 +1,6 @@
 
 <div class="form-column" id="first-column">
-    <div class="form-section">
+    <div class="form-section" id="first_square">
         <div class="form-row"><!-- numar/data -->
             <div class="input-group" id="number"> <!-- input: document number -->
                 <label>Număr document</label>
@@ -65,7 +65,7 @@
         <div class="separator"></div>
         <div class="input-group" id="aux-input-1">
             <label>Conținut intrare</label>
-            <textarea name="cont-intrare" cols="10" rows="5">{{description_in}}</textarea>
+            <textarea name="cont-intrare" cols="7" rows="8">{{description_in}}</textarea>
         </div>
     </div>
     <div class="form-section" id="third-fs">
@@ -77,23 +77,23 @@
         <div class="form-row">
             <div class="input-group" id="date">
                 <label>la data</label>
-                <input type="text" value={{solutionated_data}}>
+                <input type="text" value="{{solutionated_data}}">
             </div>
         </div>
         <div class="separator"></div>
         <div class="input-group">
             <label>Conținut ieșire</label>
-            <textarea name="cont-iesire" cols="7" rows="5"></textarea>
+            <textarea name="cont-iesire" cols="7" rows="8">{{description_out}}</textarea>
         </div>
         <div class="form-row">
             <div class="input-group">
                 <label>Nr-I-Dest</label>
-                <input type="text" value={{nr_dest}}> 
+                <input type="text" value="{{dest_nr}}"> 
             </div>
             <div class="input-group">
                 <label>Mod ieșire</label>
                 <select>
-                    <option value={{out_mode}}>{{out_mode}}</option>
+                    <option value="{{out_mode}}">{{out_mode}}</option>
                 </select>
             </div>
         </div>

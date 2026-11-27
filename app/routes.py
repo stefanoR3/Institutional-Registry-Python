@@ -36,6 +36,29 @@ def registru():
 def filter():
     return render_template('filtru.html')
 
+@app.route('/apply_filter', methods=['POST']) #what about methods
+def apply():
+    filter_in = request.form.get('inputs') is not None
+    filter_out = request.form.get('outputs') is not None
+    filter_all = request.form.get('all') is not None
+
+    connection = reg_mod.get_connection()
+
+    if filter_in is True:
+        emitent = request.form.get('issuer')
+        nr_inreg_emitent = request.form.get('nr_issuer')
+        descriere = request.form.get('input_des')
+        catre = request.form.get('to')
+        raspuns = request.form.get('answer')
+
+        with connection.cursor() as cursor:
+            stmt = """SELECT nrinreg, dtinreg
+               WHERE emitent = %s AND nrinreg = %s AND continut_int = %d AND repartizat = %d AND continut_ies = %d"""
+            cursor.execute(stmt,(emitent,nr_inreg_emitent,descriere,catre,raspuns))
+            #to continue with return numbers and dates in registru template
+    
+    return render_template('filtru.html')
+
 @app.route('/iesire')
 def iesire():
     return render_template('iesire.html')
@@ -61,6 +84,6 @@ def details():
         print(type(record))
     return render_template('card-details.html', document_number=nr, document_date=date, input_mode=record.get('modintrare'),
         type_mode=record.get('tipintrare'), issuer=record.get('emitent'), nr_issuer=record.get('nrinregemit'), period_days=record.get('termen_zile'),
-        period_data=record.get('termen_data'), depart=record.get('repartdanu'), description_in=record.get('continut_intrare'), solutioned=record.get('solras_danu'),
-        solutionated_data=record.get('solras_data'), description_out=record.get('continut_ies'), receiver_nr=record.get('nrinregdest'), out_mode=record.get('tip_iesire'),
-        nr_dest = record.get('nrinregdest'))
+        period_data=record.get('termen_data'), depart=record.get('repartdanu'), description_in=record.get('continut_int'), solutioned=record.get('solras_danu'),
+        solutionated_data=record.get('solras_data'), description_out=record.get('continut_ies'), dest_nr=record.get('nrinregdest'), out_mode=record.get('tip_iesire'),
+        nr_dest=record.get('nrinregdest'))
