@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js" integrity="sha384-2OatzQy1H+Zd/IIrjr1TcuDGqLXeHhbooAyJY1KdQMKnr4LZ22k31GBLdYKHmVjg" crossorigin="anonymous"></script>
         <style>
             body{
-                background-color: rgba(1, 35, 54, 0.8);
+                /*background-color: rgba(1, 35, 54, 0.8);*/
             }
             
             /* layout structure */
@@ -18,14 +18,16 @@
                     display: flex; /* layout mode, used to stack items in column (cards). Flexbox is a html tool for alignment */
                     flex-direction: column; /* stacks items vertically */
                     gap: 1px; /* manage space trough cards(divs) -> that's why we used div->flexbox */
-                    width: 125px; /* without it the div would stretch to the entire width of the screen */
+                    width: 200px; /* without it the div would stretch to the entire width of the screen */
                     /*border:2px solid; red; /*debug*/
+                    height: 800px;
+                    overflow-y: auto;
                 }
 
                 .app-layout{
                     display: flex; /* used to sit list on the left and details on the right */
                     gap: 24px;
-                    max-width: 1400px;
+                    width:1600px;
                     margin-top: 20px; /* prevent huge stretch on wide screens */
                     margin-left: auto; /* auto calculates automatically the margin needed */
                     margin-right:auto; /* top-bottom 0, left-right auto to auto center in browser */
@@ -64,7 +66,7 @@
                     border-radius: 6px;
                     padding: 6px;
                     margin-bottom: 20px; /* outer space */
-                    width: 280px;
+                    width: auto;
                 }
 
                 .form-column{
@@ -157,13 +159,21 @@
                     display: flex; /* row alignment, used to stack number and date in row(card) */
                     justify-content: space-between; /* left and right alignment */
                     align-items: center; /* alogn them vertically (no up and downs) */
+                    cursor: pointer;
+                    width: 180px;
+                    height: 40px;
                 }
 
                 /* only apply this rules if an element has both teh document-card and active class together */
-                .document-card.active{
+                .document-card:active{
                     background-color: #eff6ff;
                     /*border-color: #3b82f6;*/
                     border-left: 4px solid #2563eb; /* only the left border */
+
+                }
+
+                .document-card:focus{
+                    background-color: rgba(198, 211, 225, 0.1)
                 }
 
                 .doc-number{
@@ -185,14 +195,20 @@
 
             /*buttons*/
                 .repart-buttons{
-                    background-color: rgba(25, 240, 176, 0.1);
-                    border: 2px solid rgba(25, 240, 176, 0.2);
+                    background-color: rgba(165, 184, 179, 0.1);
+                    border: 2px solid rgba(171, 179, 176, 0.103);
                     border-radius: 4px;
                     text-align: center;
-                    width: 200px;
+                    width: 240px;
+                    height: 25px;
                     cursor: pointer;
                     padding:2px 4px;
                     margin: 1px 0px;
+                    margin-left: 12px;
+                }
+
+                .repart-buttons::focus{
+                    background: rgba(25, 155, 66, 0.284)
                 }
 
                 .filter-buttons{
@@ -212,6 +228,11 @@
             /* -------------------------------------- */
 
             /* registru template */
+
+            #first_square{
+                width: auto;
+                height: 200px;
+            }
 
             .text-in{
                 max-width: 100px;
@@ -258,27 +279,30 @@
             }
 
             #first-column{
-            width:300px;
+            width:400px;
+            height: 600px;
             }
 
             #second-column{
                 width: 650px;
                 flex-direction: row;
+                height: 430px;
             }
 
             #second-fs{
-                height: 300px;
+                height: auto;
                 width: 325px;
+                margin-bottom: 10px;
             }
 
             #third-fs{
-                height:375px;
+                height:415px;
                 width:310px;
             }
 
             #fourth-fs{
-                width: 200px;
-                height: 325px;
+                width: 265px;
+                height: 380px;
                 margin-right: 0px;
                 padding: 5px 5px;
             }
@@ -368,15 +392,18 @@
 
                 #filter-out{
                 height: 470px;
+                width: 400px;
                 }
 
                 #filter-document{
                     height: 200px;
+                    width: 340px;
                 }
 
                 #filter-days{
                     width:30px;
                     text-align: center;
+                    width: 30px;
                 }
 
                 #filter-row{
@@ -600,26 +627,29 @@
     </head>
     <body>
         <div class="app-layout">
-            <div class="sidebar"> <!-- for future feets -->
-                <div class="registry-list">
-                    <div class="document-card active"> <!-- this div inherit both document-card and active class-->
-                        <div class="doc-number">56456</div>
-                        <div class="doc-date">30/09/2026</div>
-                    </div>
-                    <div class="document-card">
-                        <div class="doc-number">18985</div> <!-- div stands for division (empty box)-->
-                        <div class="doc-date">28/09/2026</div> <!-- we can think the class a sticky note to css-->
-                    </div>
-                </div>
+            <div class="registry-list">
+                {% for nr, date in nr_inreg_list|zip(data_list) %}
+                    <!-- hx-vals accepts and returns a json file -->
+                    <button class="document-card" hx-post="/card-details" hx-vals='{
+                        "number": "{{nr}}",
+                        "datee":"{{date}}"}' hx-target=".details-panel">
+                        <div class="doc-number">{{ nr }}</div>
+                        <div class="doc-date">{{ date }}</div>
+                    </button>
+                {% endfor %}
             </div>
             <div class="details-panel"> <!-- first grouped section -->
                 <!--<h3 class="section-title">Document - Intrare</h3>-->
                 <div class="form-column" id="first-column">
-                    <div class="form-section">
+                    <div class="form-section" id="first_square">
                         <div class="form-row"><!-- numar/data -->
                             <div class="input-group" id="number"> <!-- input: document number -->
                                 <label>Număr document</label>
-                                <input type="text" value="675787">
+                                {% if document_number %}
+                                <input type="text" value={{document_number}}>
+                                {% else %}
+                                <input type="text" value="">
+                                {% endif %}
                             </div>
                             <div class="input-group" id="date"> <!-- input: document date -->
                                 <label>din data:</label>
@@ -679,7 +709,7 @@
                         <div class="separator"></div>
                         <div class="input-group" id="aux-input-1">
                             <label>Conținut intrare</label>
-                            <textarea name="cont-intrare" cols="10" rows="5"></textarea>
+                            <textarea name="cont-intrare" cols="10" rows="8"></textarea>
                         </div>
                     </div>
                     <div class="form-section" id="third-fs">
@@ -697,7 +727,7 @@
                         <div class="separator"></div>
                         <div class="input-group">
                             <label>Conținut ieșire</label>
-                            <textarea name="cont-iesire" cols="7" rows="5"></textarea>
+                            <textarea name="cont-iesire" cols="7" rows="8"></textarea>
                         </div>
                         <div class="form-row">
                             <div class="input-group">

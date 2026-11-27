@@ -1,88 +1,91 @@
 <!-- this template should render inside the registru template, more specific in the deteils-panel section -->
 <!-- at htmx injection, classes are directly inherited -->
-
 <div class="form-section" id="top">
-    <div class="form-section" id="top-menu">
-        <div class="form-row">
-            <div class="check-box-row">
-                <label>Intrări</label>
-                <input type="checkbox">
-            </div>
-            <div class="check-box-row">
-                <label>Ieșiri</label>
-                <input type="checkbox">
-            </div>
-            <div class="check-box-row">
-                <label>Toate</label>
-                <input type="checkbox">
-            </div>
-        </div>
-    </div>
-    <div class="form-section" id="filter-all">
-        <div class="form-section">
-            <h3 class="section-title">Filtre intrari</h3>
-            <div class="input-group">
-                <label>Emitent</label>
-                <input type="text">
-                <label>Nr inregistrare emitent</label>
-                <input type="text">
-                <label>Continut intrare</label>
-                <input type="text">
-                <label>Repartizat catre</label>
-                <input type="text">
-                <label>Continut Raspuns</label>
-                <input type="text">
-            </div>
-            <div class="input-group">
-                <h5 class="section-title" id="interval">Interval</h5>
-                <label>de la</label>
-                <input type="date">
-                <label>pana la</label>
-                <input type="date">
-            </div>
-        </div>
-    <div class="form-section" id="filter-out">
-        <h3 class="section-title">Filtre iesiri</h3>
-        <div class="input-group">
-            <label>de la compartiment</label>
-            <input type="text">
-            <label>continut</label>
-            <input type="text">
-            <label>destinatar</label>
-            <input type="text">
-        </div>
-        <div class="input-group">
-            <h5 class="section-title" id="interval">Interval</h5>
-            <label>de la</label>
-            <input type="date">
-            <label>pana la</label>
-            <input type="date">
-        </div>
-    </div>
-    <div class="form-section" id="filter-document">
-        <div class="check-box-row">
-            <label>Se filtreaza documentele</label>
-            <input type="checkbox">
-        </div>
-        <div class="input-group">
-            <div class="form-row" id="filter-row">
-                <label>Care mai au</label>
-                <input type="text" id="filter-days">
-                <label>zile pana la termen</label>
-            </div>
-            <div class="separator"></div>
+    <form hx-post="/apply_filter" hx-target=".app-layout">
+        <div class="form-section" id="top-menu">
             <div class="form-row">
-                <label>care au termen pana la</label>
-                <input type="date">
+                <div class="check-box-row">
+                    <label>Intrări</label>
+                    <input type="checkbox" name="inputs">
+                </div>
+                <div class="check-box-row">
+                    <label>Ieșiri</label>
+                    <input type="checkbox" name="outputs">
+                </div>
+                <div class="check-box-row">
+                    <label>Toate</label>
+                    <input type="checkbox" name="all">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="form-section" id="button-filters">
-        <div class="input-group">
-            <button class="filter-buttons">Aplica filtru</button>
-            <button class="filter-buttons">Anuleaza filtru</button>
+        <div class="form-section" id="filter-all">
+            <div class="form-section">
+                <h3 class="section-title">Filtre intrari</h3>
+                <div class="input-group">
+                    <label>Emitent</label>
+                    <input type="text" name="issuer">
+                    <label>Nr inregistrare emitent</label>
+                    <input type="text" name="nr_issuer">
+                    <label>Continut intrare</label>
+                    <input type="text" name="input_des">
+                    <label>Repartizat catre</label>
+                    <input type="text" name="to">
+                    <label>Continut Raspuns</label>
+                    <input type="text" name="answer">
+                </div>
+                <div class="input-group">
+                    <h5 class="section-title" id="interval">Interval</h5>
+                    <label>de la</label>
+                    <input type="date">
+                    <label>pana la</label>
+                    <input type="date">
+                </div>
+            </div>
+            <div class="form-section" id="filter-out">
+                <h3 class="section-title">Filtre iesiri</h3>
+                <div class="input-group">
+                    <label>de la compartiment</label>
+                    <input type="text">
+                    <label>continut</label>
+                    <input type="text">
+                    <label>destinatar</label>
+                    <input type="text">
+                </div>
+                <div class="input-group">
+                    <h5 class="section-title" id="interval">Interval</h5>
+                    <label>de la</label>
+                    <input type="date">
+                    <label>pana la</label>
+                    <input type="date">
+                </div>
+            </div>
+            <div class="form-section" id="filter-document">
+                <div class="check-box-row">
+                    <label>Se filtreaza documentele</label>
+                    <input type="checkbox">
+                </div>
+                <div class="input-group">
+                    <div class="form-row" id="filter-row">
+                        <label>Care mai au</label>
+                        <input type="text" id="filter-days">
+                        <label>zile pana la termen</label>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="form-row">
+                        <label>care au termen pana la</label>
+                        <input type="date">
+                    </div>
+                </div>
+            </div>
+            <div class="form-section" id="button-filters">
+                <div class="input-group">
+                    <!-- Submitting the form triggers the HTMX post -->
+                    <button class="repart-buttons" type="submit">Aplica filtru</button>
+                    <button class="repart-buttons">Anuleaza filtru</button>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 

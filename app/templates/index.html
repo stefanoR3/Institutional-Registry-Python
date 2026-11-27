@@ -8,6 +8,7 @@
         {% endif %}
     <head>
     <body>
-        <h1>Bună ziua și bine ați venit în registrul dumneavoastră, {{ user.username}}</h1>
+        <!-- | = jinja filter -->
+        <h1>Bine ați venit în registrul dumneavoastră, {{user.username|capitalize}}!</h1>
     </body>
     {% endblock %}
